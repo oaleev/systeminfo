@@ -10,7 +10,7 @@ pipeline {
 
     stage('test') {
       steps {
-        echo 'Running Unit tests'
+        echo 'Running Unit tests...'
         sh 'mvn clean test'
       }
     }
