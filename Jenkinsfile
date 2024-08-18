@@ -3,40 +3,35 @@ pipeline{
     agent any
 
 // uncomment the following lines by removing /* and */ to enable
-/*    tools{
-       maven 'Maven 3.6.3' 
+    tools{
+       maven 'Maven 3.9.6' 
     }
-*/    
-
+    
     stages{
-        stage('one'){
+        stage('build'){
             steps{
-                echo 'this is the first job'
-                sh 'uptime'
-                sleep 4
+                echo 'Compiling the App'
+                sh 'mvn compile'
             }
         }
-        stage('two'){
+        stage('test'){
             steps{
-                echo 'this is the second job'
-                sh 'uptime'
-                sleep 9
+                echo "Running Unit tests"
+                sh 'mvn clean test'
             }
         }
-        stage('three'){
+        stage('package'){
             steps{
-                echo 'this is the third job'
-                sh 'uptime'
-                sleep 7
+                echo "Packaging the app"
+                sh 'mv package -DskipTests'
             }
         }
     }
     
     post{
         always{
-            echo 'this pipeline has completed...'
-        }
-        
+            echo 'this maven pipeline has completed...'
+        }   
     }
     
 }
