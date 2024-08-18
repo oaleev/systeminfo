@@ -22,7 +22,7 @@ pipeline{
         }
         stage('package'){
             steps{
-                echo "Packaging the app"
+                echo "Packaging the app..."
                 sh 'mvn package -DskipTests'
             }
         }
